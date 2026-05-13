@@ -15,8 +15,10 @@ let state = {
 
 // Utilities
 function extractNumber(name) {
-  const match = name.match(/Number (?:C)?(\d+)/i);
-  return match ? match[1] : null;
+  // Match "Number " followed by identifier (which can contain C, F, and digits)
+  // We match up to a colon or space to get the identifier part
+  const match = name.match(/Number\s+([CF]?[0-9]+)/i);
+  return match ? match[1].toUpperCase() : null;
 }
 
 function extractSuffix(name) {
@@ -114,10 +116,14 @@ function handleAnswer(answer) {
   const correctCard = state.currentQuestion.correctCard;
 
   if (state.mode === 'HARD') {
-    // Normalize both to integers to handle cases like "04" vs "4"
-    const userVal = parseInt(answer.trim(), 10);
-    const correctVal = parseInt(state.currentQuestion.correctNumber, 10);
-    isCorrect = !isNaN(userVal) && userVal === correctVal;
+    const rawUser = answer.trim().toUpperCase();
+    const rawCorrect = state.currentQuestion.correctNumber.toUpperCase();
+
+    // Helper to normalize values for comparison (removes C/F and leading zeros)
+    // "C39" -> "39", "F0" -> "0", "04" -> "4"
+    const normalize = (val) => val.replace(/^[CF]/, '').replace(/^0+/, '') || '0';
+
+    isCorrect = (rawUser === rawCorrect) || (normalize(rawUser) === normalize(rawCorrect));
     
     message = isCorrect ? 'Perfect Recall!' : `Incorrect. It was No. ${state.currentQuestion.correctNumber}`;
   } else {
