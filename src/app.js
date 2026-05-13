@@ -114,8 +114,12 @@ function handleAnswer(answer) {
   const correctCard = state.currentQuestion.correctCard;
 
   if (state.mode === 'HARD') {
-    isCorrect = answer.trim() === state.currentQuestion.correctNumber;
-    message = isCorrect ? 'Perfect Recall!' : `Wrong! It was No. ${state.currentQuestion.correctNumber}`;
+    // Normalize both to integers to handle cases like "04" vs "4"
+    const userVal = parseInt(answer.trim(), 10);
+    const correctVal = parseInt(state.currentQuestion.correctNumber, 10);
+    isCorrect = !isNaN(userVal) && userVal === correctVal;
+    
+    message = isCorrect ? 'Perfect Recall!' : `Incorrect. It was No. ${state.currentQuestion.correctNumber}`;
   } else {
     const correctValue = state.mode === 'EASY' ? correctCard.name : extractSuffix(correctCard.name);
     isCorrect = (answer === correctValue);
