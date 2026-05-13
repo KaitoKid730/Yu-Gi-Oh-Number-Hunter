@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Hunter - Bauhaus Challenge</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="src/style.css">
+    <style>
+        /* Small fixes for Tailwind/CSS interop if needed */
+        .bauhaus-bg { background-color: var(--bauhaus-bg); }
+    </style>
+</head>
+<body class="dots-pattern">
+    <!-- Header -->
+    <header class="border-b-4 border-[#121212] bg-white px-4 py-4 flex justify-between items-center sticky top-0 z-50">
+        <div class="flex items-center gap-2">
+            <div class="w-8 h-8 rounded-full bg-[#D02020] border-2 border-[#121212]"></div>
+            <div class="w-8 h-8 bg-[#F0C020] border-2 border-[#121212]"></div>
+            <div class="shape-triangle"></div>
+            <span class="ml-2 font-black uppercase text-2xl tracking-tighter hidden sm:inline">
+                Number Hunter
+            </span>
+        </div>
+        <div class="flex items-center gap-4">
+            <div id="scoreboard" class="flex items-center gap-4"></div>
+            <button id="reset-header-btn" onclick="resetGame()" class="hidden px-6 py-1 font-bold uppercase tracking-widest bauhaus-border-thin shadow-bauhaus-sm bauhaus-button-active bg-white hover:bg-[#D02020] hover:text-white transition-all">
+                Reset
+            </button>
+        </div>
+    </header>
+
+    <main id="game-container" class="max-w-4xl mx-auto p-4 sm:p-8">
+        <!-- Game content will be injected here -->
+    </main>
+
+    <!-- Initial Loading State -->
+    <div id="loading" class="fixed inset-0 flex items-center justify-center bg-[#F0F0F0] z-[100]">
+        <div class="flex flex-col items-center gap-4">
+            <div class="w-16 h-16 bauhaus-border animate-spin bg-[#D02020]"></div>
+            <p class="font-black uppercase tracking-widest">Constructing Deck...</p>
+        </div>
+    </div>
+
+    <!-- Decorative background shapes -->
+    <div class="fixed bottom-[-50px] right-[-50px] w-64 h-64 bg-[#D02020] rounded-full opacity-20 -z-10"></div>
+    <div class="fixed top-20 left-[-30px] w-48 h-48 bg-[#1040C0] rotate-45 opacity-10 -z-10"></div>
+
+    <script src="src/app.js"></script>
+</body>
+</html>
+

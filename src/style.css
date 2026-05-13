@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;700;900&display=swap');
+
+:root {
+  --bauhaus-red: #D02020;
+  --bauhaus-blue: #1040C0;
+  --bauhaus-yellow: #F0C020;
+  --bauhaus-black: #121212;
+  --bauhaus-bg: #F0F0F0;
+  --shadow-sm: 4px 4px 0px 0px #121212;
+  --shadow-lg: 8px 8px 0px 0px #121212;
+}
+
+body {
+  font-family: 'Outfit', sans-serif;
+  background-color: var(--bauhaus-bg);
+  color: var(--bauhaus-black);
+  margin: 0;
+  overflow-x: hidden;
+}
+
+.bauhaus-border {
+  border: 4px solid var(--bauhaus-black);
+}
+
+.bauhaus-border-thin {
+  border: 2px solid var(--bauhaus-black);
+}
+
+.bauhaus-shadow {
+  shadow: var(--shadow-lg);
+  box-shadow: 8px 8px 0px 0px var(--bauhaus-black);
+}
+
+.bauhaus-shadow-sm {
+  box-shadow: 4px 4px 0px 0px var(--bauhaus-black);
+}
+
+.bauhaus-button-active:active {
+  transform: translate(2px, 2px);
+  box-shadow: none;
+}
+
+.dots-pattern {
+  background-image: radial-gradient(#121212 1px, transparent 0);
+  background-size: 24px 24px;
+}
+
+/* Animations */
+.fade-in {
+  animation: fadeIn 0.4s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.slide-in {
+  animation: slideIn 0.4s ease-out forwards;
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* Custom Utilities for Bauhaus Shapes */
+.shape-triangle {
+  width: 0;
+  height: 0;
+  border-left: 16px solid transparent;
+  border-right: 16px solid transparent;
+  border-bottom: 32px solid var(--bauhaus-blue);
+  position: relative;
+}
+
+.shape-triangle::after {
+  content: '';
+  position: absolute;
+  top: 4px;
+  left: -12px;
+  width: 0;
+  height: 0;
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+  border-bottom: 24px solid var(--bauhaus-blue);
+}
